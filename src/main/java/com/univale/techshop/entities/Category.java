@@ -2,6 +2,7 @@ package com.univale.techshop.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +15,9 @@ public class Category {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
     private  String nome;
+
+    @OneToMany( mappedBy = "category")
+    private List<Product> products;
 
     public Category() {}
 

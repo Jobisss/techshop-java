@@ -15,13 +15,23 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column( nullable = false )
     private String nome;
+
+    @Column( nullable = false)
     private double preco;
+
+    @Column( nullable = false)
     private String imgUrl;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn( name = "order_id" )
     private Order order;
+
+    @ManyToOne
+    @JoinColumn( name = "category_id")
+    private Category category;
 
     public Product() {}
 

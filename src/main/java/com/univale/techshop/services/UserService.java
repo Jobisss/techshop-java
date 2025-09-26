@@ -20,6 +20,13 @@ public class UserService {
 
     public User findById(Long id) {
         Optional<User> user = userRepository.findById(id);
+        if(user.isEmpty()) {
+            throw new Error("user not found");
+        }
         return user.get();
+    }
+
+    public User insert(User user ) {
+        return userRepository.save(user);
     }
 }
