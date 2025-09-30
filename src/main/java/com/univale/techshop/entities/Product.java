@@ -25,9 +25,9 @@ public class Product implements Serializable {
     @Column( nullable = false)
     private String imgUrl;
 
-    @ManyToOne
-    @JoinColumn( name = "order_id" )
-    private Order order;
+    @OneToMany
+    @JoinColumn( name = "product")
+    private List<OrderItem> orderItems;
 
     @ManyToOne
     @JoinColumn( name = "category_id")
@@ -40,14 +40,6 @@ public class Product implements Serializable {
         this.preco = preco;
         this.nome = nome;
         this.imgUrl = imgUrl;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public Long getId() {
@@ -82,6 +74,22 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -93,4 +101,5 @@ public class Product implements Serializable {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 }

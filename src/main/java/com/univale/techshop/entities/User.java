@@ -31,7 +31,6 @@ public class User implements Serializable {
     @OneToMany( mappedBy = "client")
     private List<Order> orders;
 
-
     public User() {}
 
     public User(Long id, String name, String email, String phone, String password) {
@@ -40,6 +39,14 @@ public class User implements Serializable {
         this.password = password;
         this.name = name;
         this.phone = phone;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     public Long getId() {
