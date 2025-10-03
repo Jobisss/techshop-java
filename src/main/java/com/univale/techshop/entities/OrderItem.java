@@ -3,8 +3,11 @@ package com.univale.techshop.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
+@Entity
+@Table( name = "order_item")
 public class OrderItem implements Serializable {
     private static final Long serialVersionUID = 1L;
 
@@ -18,20 +21,23 @@ public class OrderItem implements Serializable {
 
     @ManyToOne
     @JoinColumn( name = "order_id")
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private Order order;
 
     @ManyToOne
     @JoinColumn( name = "product_id", nullable = true)
     private Product product;
 
+    private BigDecimal totalPrice;
+
     public OrderItem() {}
 
-    public OrderItem(Long id, int quantity, double price, Order order, Product product) {
-        this.id = id;
-        this.quantity = quantity;
-        this.price = price;
-        this.order = order;
-        this.product = product;
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public Long getId() {

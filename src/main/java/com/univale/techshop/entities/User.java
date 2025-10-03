@@ -28,6 +28,7 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String password;
 
+    @com.fasterxml.jackson.annotation.JsonIgnore
     @OneToMany( mappedBy = "client")
     private List<Order> orders;
 

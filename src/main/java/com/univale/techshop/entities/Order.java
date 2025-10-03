@@ -31,15 +31,17 @@ public class Order  implements Serializable {
     @JoinColumn( name = "payment_id", referencedColumnName = "id")
     private Payment payment;
 
-    public Order() {}
+    public Order() {
+        this.createdAt = LocalDateTime.now();
+        this.status = OrderStatus.WAITING_PAYMENT;
+    }
 
-    public Order(Long id, LocalDateTime createdAt, OrderStatus status, List<OrderItem> orderItem, User client, Payment payment) {
+    public Order(Long id, LocalDateTime createdAt, OrderStatus status, List<OrderItem> orderItem, User client) {
         this.id = id;
         this.createdAt = createdAt;
         this.status = status;
         this.orderItem = orderItem;
         this.client = client;
-        this.payment = payment;
     }
 
     public Long getId() {
@@ -66,7 +68,7 @@ public class Order  implements Serializable {
         this.status = status;
     }
 
-    public List<OrderItem> getOrderItem() {
+    public List<OrderItem> getOrderItems() {
         return orderItem;
     }
 

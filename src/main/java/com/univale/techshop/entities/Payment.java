@@ -3,9 +3,12 @@ package com.univale.techshop.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
+@Table(name = "payment")
 public class Payment implements Serializable {
     private static final Long serialVersionUID = 1L;
 
@@ -13,7 +16,7 @@ public class Payment implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  long id;
 
-    private double price;
+    private BigDecimal price;
 
     private LocalDateTime createdAt;
 
@@ -27,7 +30,7 @@ public class Payment implements Serializable {
 
     public Payment() {}
 
-    public Payment(long id, double price, LocalDateTime createdAt, Order order, User user) {
+    public Payment(long id, BigDecimal price, LocalDateTime createdAt, Order order, User user) {
         this.id = id;
         this.price = price;
         this.createdAt = createdAt;
@@ -43,11 +46,11 @@ public class Payment implements Serializable {
         this.id = id;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

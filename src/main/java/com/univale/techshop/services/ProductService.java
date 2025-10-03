@@ -16,7 +16,11 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product insertOne( Product product) {
+    public Product insert(Product product) {
         return productRepository.save(product);
+    }
+
+    public Product find( Long productId) {
+        return productRepository.findById(productId).orElseThrow(() -> new IllegalArgumentException(" Produto não encontrado"));
     }
 }

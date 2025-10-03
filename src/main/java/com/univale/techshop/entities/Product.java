@@ -25,6 +25,7 @@ public class Product implements Serializable {
     @Column( nullable = false)
     private String imgUrl;
 
+    @com.fasterxml.jackson.annotation.JsonIgnore
     @OneToMany
     @JoinColumn( name = "product")
     private List<OrderItem> orderItems;
@@ -35,11 +36,12 @@ public class Product implements Serializable {
 
     public Product() {}
 
-    public Product(Long id, String nome, double preco, String imgUrl) {
+    public Product(Long id, String nome, double preco, String imgUrl, Category category) {
         this.id = id;
-        this.preco = preco;
         this.nome = nome;
+        this.preco = preco;
         this.imgUrl = imgUrl;
+        this.category = category;
     }
 
     public Long getId() {

@@ -16,6 +16,7 @@ public class Category {
     private Long id;
     private  String nome;
 
+    @com.fasterxml.jackson.annotation.JsonIgnore
     @OneToMany( mappedBy = "category")
     private List<Product> products;
 
