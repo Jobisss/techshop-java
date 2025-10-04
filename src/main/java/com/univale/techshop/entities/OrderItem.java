@@ -17,9 +17,9 @@ public class OrderItem implements Serializable {
 
     private int quantity;
 
-    private double price;
+    private BigDecimal price;
 
-    @ManyToOne
+    @ManyToOne( optional = false, fetch = FetchType.LAZY)
     @JoinColumn( name = "order_id")
     @com.fasterxml.jackson.annotation.JsonIgnore
     private Order order;
@@ -48,7 +48,7 @@ public class OrderItem implements Serializable {
         this.id = id;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
@@ -56,11 +56,11 @@ public class OrderItem implements Serializable {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

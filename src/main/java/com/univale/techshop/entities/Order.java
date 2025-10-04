@@ -3,6 +3,7 @@ package com.univale.techshop.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -20,11 +21,14 @@ public class Order  implements Serializable {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    @OneToMany( mappedBy = "order")
+    private BigDecimal total;
+
+    @OneToMany( mappedBy = "order", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<OrderItem> orderItem;
 
     @ManyToOne
     @JoinColumn( name = "client_id")
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private User client;
 
     @OneToOne
@@ -42,6 +46,18 @@ public class Order  implements Serializable {
         this.status = status;
         this.orderItem = orderItem;
         this.client = client;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItem;
     }
 
     public Long getId() {
@@ -66,10 +82,6 @@ public class Order  implements Serializable {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
-    }
-
-    public List<OrderItem> getOrderItems() {
-        return orderItem;
     }
 
     public void setOrderItem(List<OrderItem> orderItem) {

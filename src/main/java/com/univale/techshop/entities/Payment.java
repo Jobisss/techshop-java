@@ -30,8 +30,7 @@ public class Payment implements Serializable {
 
     public Payment() {}
 
-    public Payment(long id, BigDecimal price, LocalDateTime createdAt, Order order, User user) {
-        this.id = id;
+    public Payment(BigDecimal price, LocalDateTime createdAt, Order order, User user) {
         this.price = price;
         this.createdAt = createdAt;
         this.order = order;

@@ -3,6 +3,7 @@ package com.univale.techshop.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +21,7 @@ public class Product implements Serializable {
     private String nome;
 
     @Column( nullable = false)
-    private double preco;
+    private BigDecimal preco;
 
     @Column( nullable = false)
     private String imgUrl;
@@ -36,7 +37,7 @@ public class Product implements Serializable {
 
     public Product() {}
 
-    public Product(Long id, String nome, double preco, String imgUrl, Category category) {
+    public Product(Long id, String nome, BigDecimal preco, String imgUrl, Category category) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
@@ -60,11 +61,11 @@ public class Product implements Serializable {
         this.nome = nome;
     }
 
-    public double getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
 
